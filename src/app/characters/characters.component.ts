@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharactersService } from '../services/characters.service';
 
 @Component({
   selector: 'app-characters',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./characters.component.css']
 })
 export class CharactersComponent implements OnInit {
-
-  constructor() { }
+  characters: any = []
+  constructor(private charactersService: CharactersService) {
+    this.charactersService.getAll().then(r => {
+      this.characters = r.data.results
+      console.log(r.data)
+    }).catch(err => console.log(err))
+  }
 
   ngOnInit(): void {
   }

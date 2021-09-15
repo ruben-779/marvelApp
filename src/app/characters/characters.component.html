@@ -1,1 +1,33 @@
 <p>characters works!</p>
+<!-- <div class="container">
+  <ul class="wrap" *ngFor="let character of characters">
+    <div>
+      <img
+        src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}"
+        alt=""
+        class="thumb"
+      />
+    </div>
+    <div class="name">
+      <strong>{{ character.name }}</strong>
+    </div>
+  </ul>
+</div> -->
+<div class="container">
+  <div class="wrap" *ngFor="let character of characters" class="card-deck">
+    <div class="card">
+      <img
+        *ngIf="!character.thumbnail.path.includes('not_available')"
+        class="card-img-top"
+        src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ character.name }}</h5>
+        <p *ngIf="character.description" class="card-text">
+          {{ character.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
